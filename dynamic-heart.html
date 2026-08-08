@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态爱心</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255, 179, 198, 0.42), transparent 28%),
+        radial-gradient(circle at 75% 70%, rgba(255, 105, 135, 0.3), transparent 30%),
+        linear-gradient(135deg, #210716, #4a0d26 48%, #160811);
+      font-family: Arial, sans-serif;
+    }
+
+    .scene {
+      position: relative;
+      width: min(72vmin, 460px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .heart {
+      position: relative;
+      width: 42%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #ff6b8a, #ff144f 58%, #b90035);
+      transform: rotate(-45deg);
+      animation: heartbeat 1.15s ease-in-out infinite;
+      box-shadow:
+        0 0 34px rgba(255, 56, 98, 0.7),
+        0 0 80px rgba(255, 28, 80, 0.38);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: inherit;
+    }
+
+    .heart::before {
+      top: -50%;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: 50%;
+    }
+
+    .ring {
+      position: absolute;
+      width: 44%;
+      aspect-ratio: 1;
+      border: 2px solid rgba(255, 155, 177, 0.7);
+      transform: rotate(-45deg);
+      animation: pulse-ring 1.15s ease-out infinite;
+    }
+
+    .ring::before,
+    .ring::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: inherit;
+      border-radius: 50%;
+    }
+
+    .ring::before {
+      top: -50%;
+      left: 0;
+    }
+
+    .ring::after {
+      top: 0;
+      left: 50%;
+    }
+
+    .spark {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ffd6df;
+      box-shadow: 0 0 18px #ff6f93;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .spark:nth-child(1) {
+      top: 19%;
+      left: 22%;
+      animation-delay: 0s;
+    }
+
+    .spark:nth-child(2) {
+      top: 24%;
+      right: 18%;
+      animation-delay: 0.55s;
+    }
+
+    .spark:nth-child(3) {
+      right: 26%;
+      bottom: 22%;
+      animation-delay: 1.1s;
+    }
+
+    .spark:nth-child(4) {
+      bottom: 30%;
+      left: 18%;
+      animation-delay: 1.65s;
+    }
+
+    .spark:nth-child(5) {
+      top: 50%;
+      right: 9%;
+      animation-delay: 2.2s;
+    }
+
+    @keyframes heartbeat {
+      0%,
+      100% {
+        transform: rotate(-45deg) scale(1);
+      }
+
+      18% {
+        transform: rotate(-45deg) scale(1.16);
+      }
+
+      32% {
+        transform: rotate(-45deg) scale(0.96);
+      }
+
+      48% {
+        transform: rotate(-45deg) scale(1.1);
+      }
+
+      68% {
+        transform: rotate(-45deg) scale(1);
+      }
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        opacity: 0.85;
+        transform: rotate(-45deg) scale(0.92);
+      }
+
+      100% {
+        opacity: 0;
+        transform: rotate(-45deg) scale(1.9);
+      }
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        opacity: 0.25;
+        transform: translateY(0) scale(0.75);
+      }
+
+      45% {
+        opacity: 1;
+        transform: translateY(-22px) scale(1.2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="scene" aria-label="动态跳动的爱心">
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <div class="ring"></div>
+    <div class="heart"></div>
+  </main>
+</body>
+</html>
